@@ -1,8 +1,4 @@
 #include "include/audio_proc.h"
-// #include "include/oled_control.h"
-
-
-
 
 volatile absolute_time_t last_time_presed_a_or_b; //timer para controle de debounce
 // volatile uint8_t desvio={50};
@@ -15,11 +11,7 @@ void gpio_irq_handler(uint gpio, uint32_t events);
 volatile bool record_on={0};//ativa a gravação. inicialisa em true para gravar ao menos uma vez após ligar
 volatile bool record_play={0};//flag de tocar gravação, inicia em false
 
-uint8_t wave[DISPLAY_WIDTH]={0};
-
-
-// void buzzer_play_any(uint16_t pwm_value);
-
+uint8_t wave[DISPLAY_WIDTH]={0};//buffer para desenho de onda na tela
 
 
 int main(){
@@ -52,9 +44,9 @@ int main(){
             mic_get_sample();
 
             // Etapas de processamento recomendadas:
-
-            // filtrar_audio();
             // led_put_color(0,0,1);
+            // filtrar_audio();
+
             normalize_waveform(wave);
 
             // printf("\nAcabou, espere alguns Segundos para nova gravação!\n");
@@ -77,12 +69,6 @@ int main(){
         }
     }
 }
-
-
-
-
-
-
 
 
 void setup_buttons(){

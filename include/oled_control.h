@@ -14,16 +14,12 @@
 #include "pico/time.h"
 
 
-
-
 //Display OLED
 #define I2C_SDA  14
 #define I2C_SCL  15
 
 #define DISPLAY_WIDTH 128
 #define DISPLAY_HEIGHT 64
-
-
 
 
 // funções do OLED

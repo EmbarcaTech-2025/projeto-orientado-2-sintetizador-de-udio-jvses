@@ -18,7 +18,7 @@
 #define MIC_CHANEL 2
 #define MIC_SAMPLES_RATE 5000 // 10.000 amostras por segundo 10kHz
 #define DURATION_SEC 22          // 5 segundos de gravação
-#define BUFFER_SIZE (MIC_SAMPLES_RATE * DURATION_SEC)   // 50.000 amostras
+#define BUFFER_SIZE (MIC_SAMPLES_RATE * DURATION_SEC)   // 50.000 amostras mas pode mudar a depender do resultado do cálculo
 #define ADC_CLOCK_DIV (48000000.0f / (MIC_SAMPLES_RATE) -1)
 #define SAMPLE_INTERVAL_US (1000000/MIC_SAMPLES_RATE)  //100 // us de espera (ajuda no sleep entre as mudanças do buffer)
 
@@ -48,7 +48,6 @@ void micriphone_setup();
 void mic_get_sample();
 void setup_buzzer_pwm();
 void buzzer_put_sound();
-
 
 
 void generate_blackman_fir_coeffs(float cutoff_freq);

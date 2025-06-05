@@ -8,8 +8,6 @@ uint16_t capture_buffer[BUFFER_SIZE];
 uint8_t dma_chan;
 dma_channel_config dma_cfg;
 
-
-
 void setup_leds(){
     // Configura o pino do LED como saída.
     gpio_init(LED_R);
@@ -114,6 +112,7 @@ void setup_buzzer_pwm(){//deve ser configurado assim div_int=2 div_frac=16 e wra
     pwm_set_gpio_level(BUZZER_PIN2,0);
     pwm_set_enabled(slice,true);
 }
+
 void buzzer_put_sound(){
 
     // 1. Obtém o slice do PWM associado ao buzzer
@@ -179,7 +178,7 @@ void generate_blackman_fir_coeffs(float cutoff_freq) {
     for (int n = 0; n < M; n++) {
         fir_coeffs[n] /= sum;
     }
-    printf("Acabei de fazer os coeficientes\n");
+    // printf("Acabei de fazer os coeficientes\n");
 }
 
 void apply_fir_filter(uint16_t* buffer, int buffer_size) {
@@ -206,7 +205,7 @@ void apply_fir_filter(uint16_t* buffer, int buffer_size) {
         
         buffer[i] = (uint16_t)output;  // Sobrescreve in-place
     }
-    printf("Terminei a conversão do Buffer\n");
+    // printf("Terminei a conversão do Buffer\n");
 }
 
 void apply_fir_filter2(uint16_t* buffer, int buffer_size) {
@@ -272,9 +271,12 @@ void apply_pre_emphasis(uint16_t* buffer, int buffer_size, float alpha) {
 
 void filtrar_audio(){
     apply_fir_filter(capture_buffer, BUFFER_SIZE);
+
+    // //filtragem supostamente mais sofisticada
+    // apply_pre_emphasis(capture_buffer, BUFFER_SIZE, 0.95f);
+    // apply_fir_filter(capture_buffer, BUFFER_SIZE);
+    // apply_notch_filter(capture_buffer, BUFFER_SIZE, 60.0f, 30.0f); // 60Hz
 }
-
-
 
 void normalize_waveform(uint8_t* waves) {
     // 1. Encontrar o valor RMS máximo em todo o buffer para normalização

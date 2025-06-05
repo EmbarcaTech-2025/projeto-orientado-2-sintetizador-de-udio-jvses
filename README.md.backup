@@ -31,8 +31,6 @@ E a opção de tratamento de áudio for ativada no código ela pode levar um tem
 ```
 Lembre-se que quanto maior for o buffer que guarda o som mais tempo vai levar para processar. Outro fator de qualidade que aumenta o tempo de processamento é a ordem do filtro `#define FILTER_ORDER 50` que você pode editar no arquivo audio_proc.h também. Em 50 ou 100 a filtragem já é boa. Aumentar para 200 demora muito o processamento e não se vê tanta diferença no resultado final.
 
-Após mudanças(caso o usuário quiser) é só recompilar e embarcar na BitDogLab que irá funcionar.
-
 
 ## 📜 Licença
 GNU GPL-3.0.
